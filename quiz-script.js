@@ -1,102 +1,97 @@
-// Selects element by class
+
+window.onload = function() {
+
+
+//quiz timer
 var timeEl = document.querySelector(".timer");
-
-// Selects element by id
 var mainEl = document.getElementById("quiz-text");
-
-var secondsLeft = 10;
+var startButton = document.querySelector(".start-btn");
 
 function setTime() {
-  // Sets interval in variable
-  var timerInterval = setInterval(function() {
-    secondsLeft--;
+    startButton.disabled = true;
+    // startButton.style.display = 'none';
+    var secondsLeft = 5;
+    var timerInterval = setInterval(function() {
+    secondsLeft--;    
     timeEl.textContent = "Seconds left until quiz ends! " + secondsLeft + ".";
 
-    if(secondsLeft === 0) {
+    if(secondsLeft <= 0) {
       // Stops execution of action at set interval
       clearInterval(timerInterval);
+      startButton.disabled = false;
       // Calls function to create and append image
-      sendMessage();
+      sendMessage(); //create function call for final score and initals.
     }
-
   }, 1000);
 }
 
-// var question1 = 
-//     {
-//         question1: "Commonly used data types DO NOT include:?",
-//         answers: {
-//             a: "1. strings",
-//             b: "2. booleans",
-//             c: "3. alerts",
-//             d: "4. numbers"
-//         },
-//         answer: "c"
-//     }
-
-//look at creating idividual arrays for each answer data set
-
 var questions = [
     {
-        question1: "Commonly used data types DO NOT include:?",
-        answers: {
-            a: "1. strings",
-            b: "2. booleans",
-            c: "3. alerts",
-            d: "4. numbers"
-        },
-        answer: "c" //alerts
+        question: "Commonly used data types DO NOT include:?",
+        options: ["strings", "booleans", "alerts", "numbers"],
+        answer: "alerts",
     },
     {
-        question2: "The condition in an if/else statement is enclosed within ____?",
-        answers: {
-            a: "1. quotes",
-            b: "2. curly brackets",
-            c: "3. parentheses",
-            d: "4. square brackets"
-        },
-        answer: "d"
-
+        question: "The condition in an if/else statement is enclosed within ____?",
+        options: ["quotes","curly brackets", "parentheses", "square brackets"],
+        answer: "curley brackets",
     },
     {
-        question2: "Arrays in JavaScript can be used to store ____.",
-        answers: {
-            a: "1. numbers and strings",
-            b: "2. other arrays",
-            c: "3. booleans",
-            d: "4. all of the above"
-        },
-        answer: "c"
-
+        question: "Arrays in JavaScript can be used to store ____.",
+        options: ["numbers and strings", "other arrays", "booleans", "all of the above"],
+        answer: "all of the above",
     },
     {
-        question2: "String values must be enclosed within _____ when being assinged to variables.",
-        answers: {
-            a: "1. commas",
-            b: "2. curly brackets",
-            c: "3. quotes",
-            d: "4. parentheses"
-        },
-        answer: "c"
-
+        question: "String values must be enclosed within _____ when being assinged to variables.",
+        options: ["commas", "curly brackets", "quotes", "parentheses"],
+        answer: "quotes",
     },
     {
-        question2: "A very useful tool used during development and debugging for printing content to the debugger is:____?",
-        answers: {
-            a: "1. JavaScript",
-            b: "2. terminal/bash",
-            c: "3. for loops",
-            d: "4. console.log"
-        },
-        answer: "d"
-
+        question: "A very useful tool used during development and debugging for printing content to the debugger is:____?",
+        options: ["JavaScript", "terminal/bash", "for loops", "console.log"],
+        answer: "console.log",
     }
 ];
+
+function showQuestion() {
+    var currentQuestion = questions[currentIndex]
+
+    currentQuestion.questions.forEach(element => {
+        
+    });
+}
+
+// if(questionsIndex === questions.length){
+//    quizEnd()
+// } else {
+//     showQuestion();
+// }
+
+
 
 // for loop that cycles through questions
 for (var i = 0; i < questions.length; i++) {
     questions[i] //inner.HTML updates as we go through the array.
 }
 
-var startButton = document.querySelector(".start-btn");
+
+//Scoreboard and initals
+const scores = [];
+const initals = document.getElementById('initals');
+const initialsList = document.getElementById('initalsList');
+
+function addInitals () {
+  const userInput = initals.value;
+   if (userInput == "") {
+      return
+  }
+  else {scores.push(userInput);
+}
+}
+
+var submitButton = document.querySelector("#submit");
+submitButton.addEventListener('click', addInitals);
+
+
 startButton.addEventListener('click', setTime);
+}
