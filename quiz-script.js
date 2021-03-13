@@ -1,7 +1,6 @@
 
 window.onload = function() {
 
-
 //quiz timer
 var timeEl = document.querySelector(".timer");
 var mainEl = document.getElementById("quiz-text");
@@ -9,14 +8,12 @@ var startButton = document.querySelector(".start-btn");
 
 function setTime() {
     startButton.disabled = true;
-    // startButton.style.display = 'none';
     var secondsLeft = 5;
     var timerInterval = setInterval(function() {
     secondsLeft--;    
     timeEl.textContent = "Seconds left until quiz ends! " + secondsLeft + ".";
 
     if(secondsLeft <= 0) {
-      // Stops execution of action at set interval
       clearInterval(timerInterval);
       startButton.disabled = false;
       // Calls function to create and append image
@@ -25,6 +22,7 @@ function setTime() {
   }, 1000);
 }
 
+//quiz question array
 var questions = [
     {
         question: "Commonly used data types DO NOT include:?",
@@ -53,21 +51,21 @@ var questions = [
     }
 ];
 
+const answersUl = document.getElementById('answers');
+
 function showQuestion() {
-    var currentQuestion = questions[currentIndex]
-
-    currentQuestion.questions.forEach(element => {
-        
-    });
+   const quizDisplayP = document.getElementById('askQuestion');
+   
+   questions.forEach((_question) => {
+    quizDisplayP.innerHTML = _question.question;
+    const options = _question.options;
+    options.forEach((option) => {
+    const li = document.createElement("li");
+    li.appendChild(document.createTextNode(option));
+    answersUl.appendChild(li);
+    })
+   })
 }
-
-// if(questionsIndex === questions.length){
-//    quizEnd()
-// } else {
-//     showQuestion();
-// }
-
-
 
 // for loop that cycles through questions
 for (var i = 0; i < questions.length; i++) {
@@ -77,21 +75,28 @@ for (var i = 0; i < questions.length; i++) {
 
 //Scoreboard and initals
 const scores = [];
-const initals = document.getElementById('initals');
-const initialsList = document.getElementById('initalsList');
+const initals = document.getElementById('initials');
+const initialsList = document.getElementById('initialsList');
 
 function addInitals () {
   const userInput = initals.value;
    if (userInput == "") {
       return
   }
-  else {scores.push(userInput);
+   else {
+    scores.push(userInput);
+    initialsList.innerHTML = "";
+    scores.forEach((_score) => {
+        const li = document.createElement("li");
+        li.appendChild(document.createTextNode(_score));
+        initialsList.appendChild(li);
+    })
+  }
 }
-}
-
 var submitButton = document.querySelector("#submit");
 submitButton.addEventListener('click', addInitals);
 
-
+//quiz (re)start button event
 startButton.addEventListener('click', setTime);
+showQuestion();
 }

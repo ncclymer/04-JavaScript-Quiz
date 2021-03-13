@@ -16,20 +16,29 @@
       <p class="timer"></p>   
     </header>
 
-    <script src="quiz-script.js"></script>
+    
 
     <button id="input">User input</button>
     
-    <div id="quiz-text">test</div>
+    <div id="quiz-text">
+      <p id="askQuestion"></p>
+      <ul id="answers">
+
+      </ul>
+
+    </div>
 
     <!--Initials and highscore-->
-    <input type="text" id="initals" />
-    <button id="submit">Click to Submit</button>
-    <ul id="initialsList">
-      <li>Your initals here</li>
-    </ul>
+    <div id="finalResult">
+      <p>Your score:</p>
+      <input type="text" id="initials" />
+      <button id="submit">Click to Submit</button>
+    </div>
 
-
-        
+      <ul id="initialsList">
+        <li>Your initals here</li>
+      </ul>
+    </div>
+    <script src="quiz-script.js"></script>   
 </body>
 </html>
