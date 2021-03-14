@@ -15,4 +15,4 @@ Site URL: https://ncclymer.github.io/04-JavaScript-Quiz/
 
 Git repo URL: https://github.com/ncclymer/04-JavaScript-Quiz
 
-Screen shot: ![Porfolio Image](screenshot.png)
+Screen shot: ![Porfolio Image](screenshot.pdf)
